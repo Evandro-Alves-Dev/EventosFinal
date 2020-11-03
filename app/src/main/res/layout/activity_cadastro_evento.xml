@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CadastroEventoActivity">
+
+    <TextView
+        android:id="@+id/tv_descricaoNovoEvento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Evento" />
+
+    <EditText
+        android:id="@+id/ed_edicaoNovoEvento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/tv_descricaoNovoLocal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Local" />
+
+    <EditText
+        android:id="@+id/ed_edicaoNovoLocal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/tv_descricaoData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Data" />
+
+    <EditText
+        android:id="@+id/ed_edicaoNovaData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/imbt_voltar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClickVoltar"
+            app:srcCompat="@android:drawable/ic_menu_revert" />
+
+        <ImageButton
+            android:id="@+id/imbt_salvar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClickSalvar"
+            app:srcCompat="@android:drawable/ic_menu_save" />
+    </LinearLayout>
+</LinearLayout>
