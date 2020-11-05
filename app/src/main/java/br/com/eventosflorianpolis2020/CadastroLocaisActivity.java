@@ -23,7 +23,7 @@ public class CadastroLocaisActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_evento);
+        setContentView(R.layout.activity_cadastro_locais);
         editTextNome = findViewById(R.id.et_nome);
         editTextBairro = findViewById(R.id.et_bairro);
         editTextCidade = findViewById(R.id.et_cidade);
@@ -61,8 +61,6 @@ public class CadastroLocaisActivity extends AppCompatActivity {
         } else {
             Toast.makeText(CadastroLocaisActivity.this, "Erro ao salvar",Toast.LENGTH_LONG).show();
         }
-
-
     }
 
 }

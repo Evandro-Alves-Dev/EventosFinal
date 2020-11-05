@@ -105,11 +105,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
-    private ArrayList<Eventos> cadastroNovoEvento() {
-        ArrayList<Eventos> evento = new ArrayList<Eventos>();
-        evento.add(new Eventos(0,"Excursão para Cachoeira", "Alto do Capivari - SC", "01/11/2020"));
-        evento.add(new Eventos(1,"O poder do foco", "Florianópolis - SC", "20/10/2020" ));
-        return evento;
-    }
 }

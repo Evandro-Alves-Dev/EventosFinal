@@ -12,7 +12,7 @@ public class LocaisContract {
                 LocaisEntity.COLUMN_NAME_NOME + " TEXT," +
                 LocaisEntity.COLUMN_NAME_BAIRRO + " TEXT," +
                 LocaisEntity.COLUMN_NAME_CIDADE + " TEXT," +
-                LocaisEntity.COLUMN_NAME_CAPACIDADE + " TEXT)";
+                LocaisEntity.COLUMN_NAME_CAPACIDADE + " FLOAT)";
     }
 
     public static final String removerTabela() {

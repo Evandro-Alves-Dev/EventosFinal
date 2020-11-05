@@ -7,7 +7,7 @@
     <ListView
         android:id="@+id/lv_locais"
         android:layout_width="match_parent"
-        android:layout_height="420dp" />
+        android:layout_height="400dp" />
 
     <Button
         android:id="@+id/bt_locais"

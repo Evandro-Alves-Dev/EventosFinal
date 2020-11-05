@@ -1,5 +1,7 @@
 package br.com.eventosflorianpolis2020.modelo;
 
+
+
 import java.io.Serializable;
 
 public class Eventos implements Serializable {
@@ -7,12 +9,14 @@ public class Eventos implements Serializable {
     private String nome;
     private String local;
     private String data;
+    private Locais locais;
 
     public Eventos(int id, String nome, String local, String data) {
         this.id = id;
         this.nome = nome;
         this.local = local;
         this.data = data;
+
     }
 
     public int getId() {

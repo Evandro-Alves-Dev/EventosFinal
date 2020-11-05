@@ -9,6 +9,7 @@ import java.util.List;
 
 import br.com.eventosflorianpolis2020.database.entity.EventoEntity;
 import br.com.eventosflorianpolis2020.modelo.Eventos;
+import br.com.eventosflorianpolis2020.modelo.Locais;
 
 public class EventoDAO {
 
@@ -55,7 +56,7 @@ public class EventoDAO {
             String nome = cursor.getString(cursor.getColumnIndex(EventoEntity.COLUMN_NAME_NOME));
             String local = cursor.getString(cursor.getColumnIndex(EventoEntity.COLUMN_NAME_LOCAL));
             String data = cursor.getString(cursor.getColumnIndex(EventoEntity.COLUMN_NAME_DATA));
-            eventos.add(new Eventos(id,nome, local, data));
+            eventos.add(new Eventos(id, nome, local, data));
         }
         cursor.close();
         return eventos;

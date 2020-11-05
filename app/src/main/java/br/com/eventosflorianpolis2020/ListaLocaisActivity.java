@@ -28,7 +28,7 @@ public class ListaLocaisActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_locais);
         setTitle("Local");
         listViewLocais = findViewById(R.id.lv_locais);
-        definirOnclickListenerListView();
+        definirOnClickListenerListView();
         definirOnLongClickListenerView();
     }
 
@@ -42,7 +42,7 @@ public class ListaLocaisActivity extends AppCompatActivity {
         listViewLocais.setAdapter(adapterLocais);
     }
 
-    private void definirOnclickListenerListView() {
+    private void definirOnClickListenerListView() {
         listViewLocais.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

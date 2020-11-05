@@ -60,6 +60,9 @@ public class Locais implements Serializable {
 
     @Override
     public String toString() {
-        return nome + bairro + cidade + capacidade;
+        return "Nome: " + nome +
+                "\nBairro: " + bairro +
+                "\nCidade: " + cidade +
+                "\nCapacidade: " + capacidade;
     }
 }
