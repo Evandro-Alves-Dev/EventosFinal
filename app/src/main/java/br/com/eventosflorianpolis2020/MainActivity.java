@@ -9,13 +9,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 import br.com.eventosflorianpolis2020.database.EventoDAO;
 import br.com.eventosflorianpolis2020.modelo.Eventos;
+
+import static br.com.eventosflorianpolis2020.R.id.ed_nomeEvento;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +29,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle("Eventos 2020");
         listViewEvento = findViewById(R.id.listView_evento);
+
         onClickListenerView();
         onLongClickListener();
     }
@@ -36,10 +39,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        EventoDAO eventoDao = new EventoDAO(getBaseContext());
+        EventoDAO eventoDAO = new EventoDAO(getBaseContext());
         adapterEvento = new ArrayAdapter<Eventos>(MainActivity.this,
                 android.R.layout.simple_list_item_1,
-                eventoDao.listar());
+                eventoDAO.listar());
         listViewEvento.setAdapter(adapterEvento);
     }
 
@@ -104,5 +107,34 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, ListaLocaisActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void onClickBuscarPorEvento(View v) {
+        EditText editTextEvento = findViewById(R.id.ed_pesquisaPorEvento);
+        String letra = editTextEvento.getText().toString();
+        int opcao = 2;
+
+        EventoDAO eventoDAO = new EventoDAO(getBaseContext());
+
+        adapterEvento = new ArrayAdapter<>(MainActivity.this,
+                android.R.layout.simple_list_item_1,
+                eventoDAO.listarPesquisa(opcao, letra));
+        listViewEvento.setAdapter(adapterEvento);
+    }
+
+    public void onClickBuscarPorCidade(View v) {
+        EditText editTextEvento = findViewById(R.id.ed_pesquisaPorEvento);
+        String letra = editTextEvento.getText().toString();
+
+        EditText editTextCidade = findViewById(R.id.et_pesquisaPorCidade);
+        String letraCidade = editTextCidade.getText().toString();
+        int opcao = 2;
+
+        EventoDAO eventoDAO = new EventoDAO(getBaseContext());
+
+        adapterEvento = new ArrayAdapter<>(MainActivity.this,
+                android.R.layout.simple_list_item_1,
+                eventoDAO.listarPesquisaCidade(opcao, letra, letraCidade));
+        listViewEvento.setAdapter(adapterEvento);
     }
 }

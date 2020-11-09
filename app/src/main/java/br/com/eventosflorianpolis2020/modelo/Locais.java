@@ -4,15 +4,15 @@ import java.io.Serializable;
 
 public class Locais implements Serializable {
 
-    private int id = 0;
-    private String nome;
+    private int id;
+    private String descricao;
     private String bairro;
     private String cidade;
-    private String capacidade;
+    private int capacidade;
 
-    public Locais(int id, String nome, String bairro, String cidade, String capacidade) {
+    public Locais(int id, String descricao, String bairro, String cidade, int capacidade) {
         this.id = id;
-        this.nome = nome;
+        this.descricao = descricao;
         this.bairro = bairro;
         this.cidade = cidade;
         this.capacidade = capacidade;
@@ -26,12 +26,12 @@ public class Locais implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setDescricaoe(String descricao) {
+        this.descricao = descricao;
     }
 
     public String getBairro() {
@@ -50,17 +50,17 @@ public class Locais implements Serializable {
         this.cidade = cidade;
     }
 
-    public String getCapacidade() {
+    public int getCapacidade() {
         return capacidade;
     }
 
-    public void setCapacidade(String capacidade) {
+    public void setCapacidade(int capacidade) {
         this.capacidade = capacidade;
     }
 
     @Override
     public String toString() {
-        return "Nome: " + nome +
+        return "Nome: " + descricao +
                 "\nBairro: " + bairro +
                 "\nCidade: " + cidade +
                 "\nCapacidade: " + capacidade;

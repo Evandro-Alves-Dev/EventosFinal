@@ -26,7 +26,7 @@ public class ListaLocaisActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_locais);
-        setTitle("Local");
+        setTitle("Lista de Locais");
         listViewLocais = findViewById(R.id.lv_locais);
         definirOnClickListenerListView();
         definirOnLongClickListenerView();

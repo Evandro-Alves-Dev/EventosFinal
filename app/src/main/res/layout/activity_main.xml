@@ -10,8 +10,10 @@
     <ListView
         android:id="@+id/listView_evento"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:background="#FFFFFF" />
+        android:layout_height="200dp"
+        android:background="#FFFFFF">
+
+    </ListView>
 
     <ImageButton
         android:id="@+id/imbt_novoEvento"
@@ -26,5 +28,45 @@
         android:layout_height="wrap_content"
         android:onClick="onClickNovoLocal"
         android:text="Local" />
+
+    <TextView
+        android:id="@+id/ed_nomeEvento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Filtrar por Evento" />
+
+    <EditText
+        android:id="@+id/ed_pesquisaPorEvento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/bt_buscarEvento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickBuscarPorEvento"
+        android:text="Buscar" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Filtra por Cidade" />
+
+    <EditText
+        android:id="@+id/et_pesquisaPorCidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/bt_buscarCidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickBuscarPorCidade"
+        android:text="Buscar" />
 
 </LinearLayout>

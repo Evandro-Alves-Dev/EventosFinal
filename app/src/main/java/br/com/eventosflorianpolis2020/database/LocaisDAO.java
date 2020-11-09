@@ -21,7 +21,7 @@ public class LocaisDAO {
 
     public boolean salvar(Locais locais) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(LocaisEntity.COLUMN_NAME_NOME, locais.getNome());
+        contentValues.put(LocaisEntity.COLUMN_NAME_NOME_DESCRICAO, locais.getDescricao());
         contentValues.put(LocaisEntity.COLUMN_NAME_BAIRRO, locais.getBairro());
         contentValues.put(LocaisEntity.COLUMN_NAME_CIDADE, locais.getCidade());
         contentValues.put(LocaisEntity.COLUMN_NAME_CAPACIDADE, locais.getCapacidade());
@@ -42,11 +42,11 @@ public class LocaisDAO {
                 null);
         while (cursor.moveToNext()){
             int id = cursor.getInt(cursor.getColumnIndex(LocaisEntity._ID));
-            String nome = cursor.getString(cursor.getColumnIndex(LocaisEntity.COLUMN_NAME_NOME));
+            String descricao = cursor.getString(cursor.getColumnIndex(LocaisEntity.COLUMN_NAME_NOME_DESCRICAO));
             String bairro = cursor.getString(cursor.getColumnIndex(LocaisEntity.COLUMN_NAME_BAIRRO));
             String cidade = cursor.getString(cursor.getColumnIndex(LocaisEntity.COLUMN_NAME_CIDADE));
-            String capacidade = cursor.getString(cursor.getColumnIndex(LocaisEntity.COLUMN_NAME_CAPACIDADE));
-            locais.add(new Locais(id, nome, bairro, cidade, capacidade));
+            int capacidade = cursor.getInt(cursor.getColumnIndex(LocaisEntity.COLUMN_NAME_CAPACIDADE));
+            locais.add(new Locais(id, descricao, bairro, cidade, capacidade));
         }
         cursor.close();
         return locais;
@@ -54,7 +54,7 @@ public class LocaisDAO {
 
     public boolean excluir(Locais locais) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(LocaisEntity.COLUMN_NAME_NOME, locais.getNome());
+        contentValues.put(LocaisEntity.COLUMN_NAME_NOME_DESCRICAO, locais.getDescricao());
         contentValues.put(LocaisEntity.COLUMN_NAME_BAIRRO, locais.getBairro());
         contentValues.put(LocaisEntity.COLUMN_NAME_CIDADE, locais.getCidade());
         contentValues.put(LocaisEntity.COLUMN_NAME_CAPACIDADE, locais.getCapacidade());

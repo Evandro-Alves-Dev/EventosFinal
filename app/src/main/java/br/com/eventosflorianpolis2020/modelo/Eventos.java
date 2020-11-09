@@ -7,15 +7,15 @@ import java.io.Serializable;
 public class Eventos implements Serializable {
     private int id;
     private String nome;
-    private String local;
     private String data;
     private Locais locais;
 
-    public Eventos(int id, String nome, String local, String data) {
+
+    public Eventos(int id, String nome, String data, Locais locais) {
         this.id = id;
         this.nome = nome;
-        this.local = local;
         this.data = data;
+        this.locais = locais;
 
     }
 
@@ -43,18 +43,17 @@ public class Eventos implements Serializable {
         this.nome = nome;
     }
 
-    public String getLocal() {
-        return local;
+    public Locais getLocais() {
+        return locais;
     }
 
-    public void setLocal(String local) {
-        this.local = local;
+    public void setLocais(Locais locais) {
+        this.locais = locais;
     }
 
     @Override
     public String toString() {
         return "Evento: " + nome +
-                "\nLocal: " + local +
                 "\nData: " + data;
     }
 }

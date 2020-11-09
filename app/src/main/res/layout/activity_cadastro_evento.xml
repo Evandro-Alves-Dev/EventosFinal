@@ -21,19 +21,6 @@
         android:inputType="textPersonName" />
 
     <TextView
-        android:id="@+id/tv_descricaoNovoLocal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Local" />
-
-    <EditText
-        android:id="@+id/ed_edicaoNovoLocal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
-
-    <TextView
         android:id="@+id/tv_descricaoData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="date" />
 
     <TextView
         android:id="@+id/textView2"

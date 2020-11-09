@@ -19,7 +19,6 @@ import br.com.eventosflorianpolis2020.modelo.Locais;
 public class CadastroEventoActivity extends AppCompatActivity {
 
     private EditText editTextNome;
-    private EditText editTextLocal;
     private EditText editTextData;
 
     private int id = 0;
@@ -30,12 +29,12 @@ public class CadastroEventoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_evento);
+        setTitle("Cadastro de Eventos");
 
         spinnerLocais = findViewById(R.id.sp_locais);
-
         editTextNome = findViewById(R.id.ed_edicaoNovoEvento);
-        editTextLocal = findViewById(R.id.ed_edicaoNovoLocal);
         editTextData = findViewById(R.id.ed_edicaoNovaData);
+
         mostrarLocais();
         mostrarEvento();
     }
@@ -53,11 +52,20 @@ public class CadastroEventoActivity extends AppCompatActivity {
         if (intent != null && intent.getExtras() != null && intent.getExtras().get("eventoEditado") != null ) {
             Eventos evento = (Eventos) intent.getExtras().get("eventoEditado");
             editTextNome.setText(evento.getNome());
-            editTextLocal.setText(evento.getLocal());
             editTextData.setText(evento.getData());
-
+            int posicaoLocal = posicaoLocais(evento.getLocais());
+            spinnerLocais.setSelection(posicaoLocal);
             id = evento.getId();
         }
+    }
+
+    private int posicaoLocais(Locais locais) {
+        for (int posicao = 0; posicao < locaisAdapter.getCount(); posicao++) {
+            if (locaisAdapter.getItem(posicao).getId() == locais.getId()){
+                return posicao;
+            }
+        }
+        return 0;
     }
 
     public void onClickVoltar(View v) {
@@ -66,16 +74,17 @@ public class CadastroEventoActivity extends AppCompatActivity {
 
     public void onClickSalvar(View v) {
         String nome = editTextNome.getText().toString();
-        String local = editTextLocal.getText().toString();
         String data = editTextData.getText().toString();
+        int posicaoLocais = (int) spinnerLocais.getSelectedItemId();
+        Locais locais = (Locais) locaisAdapter.getItem(posicaoLocais);
 
-        if (nome.length() == 0 || local.length() == 0 || data.length() == 0) {
+        if (nome.length() == 0 || data.length() == 0) {
             editTextNome.setError("Nome obrigatório");
-            editTextLocal.setError("Local obrigatório");
             editTextData.setError("Data obrigatória");
+
         }
         else {
-            Eventos evento = new Eventos(id, nome, local, data);
+            Eventos evento = new Eventos(id, nome, data, locais);
             EventoDAO eventoDao = new EventoDAO(getBaseContext());
             boolean salvou = eventoDao.salvar(evento);
             if (salvou) {
