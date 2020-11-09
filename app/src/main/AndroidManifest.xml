@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".CadastroEventoActivity"></activity>
         <activity android:name=".ListaLocaisActivity" />
-        <activity android:name=".CadastroLocaisActivity" />
+        <activity android:name=".CadastroLocalActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

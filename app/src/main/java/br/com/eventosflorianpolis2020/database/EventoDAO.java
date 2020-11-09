@@ -3,15 +3,14 @@ package br.com.eventosflorianpolis2020.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.widget.SearchView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.eventosflorianpolis2020.database.entity.EventoEntity;
 import br.com.eventosflorianpolis2020.database.entity.LocaisEntity;
-import br.com.eventosflorianpolis2020.modelo.Eventos;
-import br.com.eventosflorianpolis2020.modelo.Locais;
+import br.com.eventosflorianpolis2020.modelo.Evento;
+import br.com.eventosflorianpolis2020.modelo.Local;
 
 public class EventoDAO {
 
@@ -25,35 +24,35 @@ public class EventoDAO {
         dbGateway = DBGateway.getInstance(context);
     }
 
-    public boolean excluir (Eventos eventos) {
+    public boolean excluir (Evento evento) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(EventoEntity.COLUMN_NAME_NOME, eventos.getNome());
-        contentValues.put(EventoEntity.COLUMN_NAME_DATA, eventos.getData());
-        if (eventos.getId() > 0) {
+        contentValues.put(EventoEntity.COLUMN_NAME_NOME, evento.getNome());
+        contentValues.put(EventoEntity.COLUMN_NAME_DATA, evento.getData());
+        if (evento.getId() > 0) {
             return dbGateway.getDatabase().delete(EventoEntity.TABLE_NAME,
                     EventoEntity._ID + "=?",
-                    new String[]{String.valueOf(eventos.getId())}) > 0;
+                    new String[]{String.valueOf(evento.getId())}) > 0;
         }
         return true;
     }
 
-    public boolean salvar (Eventos eventos) {
+    public boolean salvar (Evento evento) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(EventoEntity.COLUMN_NAME_NOME, eventos.getNome());
-        contentValues.put(EventoEntity.COLUMN_NAME_DATA, eventos.getData());
-        contentValues.put(EventoEntity.COLUMN_NAME_ID_LOCAL, eventos.getLocais().getId());
-        if (eventos.getId() >0) {
+        contentValues.put(EventoEntity.COLUMN_NAME_NOME, evento.getNome());
+        contentValues.put(EventoEntity.COLUMN_NAME_DATA, evento.getData());
+        contentValues.put(EventoEntity.COLUMN_NAME_ID_LOCAL, evento.getLocal().getId());
+        if (evento.getId() >0) {
             return dbGateway.getDatabase().update(EventoEntity.TABLE_NAME,
                     contentValues,
                     EventoEntity._ID + "=?",
-                    new String[]{String.valueOf(eventos.getId())}) > 0;
+                    new String[]{String.valueOf(evento.getId())}) > 0;
         }
         return dbGateway.getDatabase().insert(EventoEntity.TABLE_NAME,
                 null, contentValues) > 0;
     }
 
-    public List<Eventos> listar() {
-        List<Eventos> eventos = new ArrayList<Eventos>();
+    public List<Evento> listar() {
+        List<Evento> eventos = new ArrayList<Evento>();
         Cursor cursor = dbGateway.getDatabase().rawQuery(SQL_MOSTRAR_TODOS, null);
         while (cursor.moveToNext()) {
             int id = cursor.getInt(cursor.getColumnIndex(EventoEntity._ID));
@@ -64,8 +63,8 @@ public class EventoDAO {
             String bairro = cursor.getString(cursor.getColumnIndex(LocaisEntity.COLUMN_NAME_BAIRRO));
             String cidade = cursor.getString(cursor.getColumnIndex(LocaisEntity.COLUMN_NAME_CIDADE));
             int capacidade = cursor.getInt(cursor.getColumnIndex(LocaisEntity.COLUMN_NAME_CAPACIDADE));
-            Locais locais = new Locais(idLocal, descricao, bairro, cidade, capacidade);
-            eventos.add(new Eventos(id, nome, data, locais));
+            Local local = new Local(idLocal, descricao, bairro, cidade, capacidade);
+            eventos.add(new Evento(id, nome, data, local));
         }
         cursor.close();
         return eventos;
@@ -81,8 +80,8 @@ public class EventoDAO {
         return "ASC";
     }
 
-    public List<Eventos> listarPesquisa(int opcao, String letra) {
-        List<Eventos> eventosSearch = new ArrayList<>();
+    public List<Evento> listarPesquisa(int opcao, String letra) {
+        List<Evento> eventoSearches = new ArrayList<>();
 
 
         String SELECTION = "SELECT evento._id, evento.nome, data, idlocal, descricao, bairro, cidade, capacidade FROM "
@@ -105,15 +104,15 @@ public class EventoDAO {
             String cidade = cursor.getString(cursor.getColumnIndex(LocaisEntity.COLUMN_NAME_CIDADE));
             int capacidade = cursor.getInt(cursor.getColumnIndex(LocaisEntity.COLUMN_NAME_CAPACIDADE));
 
-            Locais locais = new Locais(idLocal, descricao, bairro, cidade, capacidade);
-            eventosSearch.add(new Eventos(id, nome, data, locais));
+            Local local = new Local(idLocal, descricao, bairro, cidade, capacidade);
+            eventoSearches.add(new Evento(id, nome, data, local));
         }
         cursor.close();
-        return eventosSearch;
+        return eventoSearches;
     }
 
-    public List<Eventos> listarPesquisaCidade(int opcao, String letra, String letraCidade) {
-        List<Eventos> eventosSearch = new ArrayList<>();
+    public List<Evento> listarPesquisaCidade(int opcao, String letra, String letraCidade) {
+        List<Evento> eventoSearches = new ArrayList<>();
 
         String SELECTION = "SELECT evento._id, evento.nome, data, idlocal, descricao, bairro, cidade, capacidade FROM "
                 + EventoEntity.TABLE_NAME + " INNER JOIN " + LocaisEntity.TABLE_NAME + " ON " +
@@ -137,14 +136,12 @@ public class EventoDAO {
             int capacidade = cursor.getInt(cursor.getColumnIndex(LocaisEntity.COLUMN_NAME_CAPACIDADE));
 
 
-            Locais locais = new Locais(idLocal, descricao, bairro, cidade, capacidade);
-            eventosSearch.add(new Eventos(id, nome, data, locais));
+            Local local = new Local(idLocal, descricao, bairro, cidade, capacidade);
+            eventoSearches.add(new Evento(id, nome, data, local));
         }
         cursor.close();
-        return eventosSearch;
+        return eventoSearches;
 
     }
-
-
 }
 

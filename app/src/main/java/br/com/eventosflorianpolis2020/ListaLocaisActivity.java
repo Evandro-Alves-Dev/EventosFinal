@@ -12,13 +12,13 @@ import android.widget.ListView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import br.com.eventosflorianpolis2020.database.LocaisDAO;
-import br.com.eventosflorianpolis2020.modelo.Locais;
+import br.com.eventosflorianpolis2020.database.LocalDAO;
+import br.com.eventosflorianpolis2020.modelo.Local;
 
 public class ListaLocaisActivity extends AppCompatActivity {
 
     private ListView listViewLocais;
-    private ArrayAdapter<Locais> adapterLocais;
+    private ArrayAdapter<Local> adapterLocais;
 
     private int id = 0;
 
@@ -35,10 +35,10 @@ public class ListaLocaisActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        LocaisDAO locaisDAO = new LocaisDAO(getBaseContext());
-        adapterLocais = new ArrayAdapter<Locais>(ListaLocaisActivity.this,
+        LocalDAO localDAO = new LocalDAO(getBaseContext());
+        adapterLocais = new ArrayAdapter<Local>(ListaLocaisActivity.this,
                 android.R.layout.simple_list_item_1,
-                locaisDAO.listar());
+                localDAO.listar());
         listViewLocais.setAdapter(adapterLocais);
     }
 
@@ -46,7 +46,7 @@ public class ListaLocaisActivity extends AppCompatActivity {
         listViewLocais.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                final Locais locaisClicados = adapterLocais.getItem(position);
+                final Local localClicado = adapterLocais.getItem(position);
 
                 new AlertDialog.Builder(ListaLocaisActivity.this)
                     .setIcon(android.R.drawable.ic_menu_edit)
@@ -55,8 +55,8 @@ public class ListaLocaisActivity extends AppCompatActivity {
                     .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(ListaLocaisActivity.this, CadastroLocaisActivity.class);
-                            intent.putExtra("locaisEditados", locaisClicados);
+                            Intent intent = new Intent(ListaLocaisActivity.this, CadastroLocalActivity.class);
+                            intent.putExtra("locaisEdicao", localClicado);
                             startActivity(intent);
                         }
                     })
@@ -69,7 +69,7 @@ public class ListaLocaisActivity extends AppCompatActivity {
         listViewLocais.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                final Locais locaisClicados = adapterLocais.getItem(position);
+                final Local localClicados = adapterLocais.getItem(position);
 
                 new AlertDialog.Builder(ListaLocaisActivity.this)
                     .setIcon(android.R.drawable.ic_delete)
@@ -78,8 +78,8 @@ public class ListaLocaisActivity extends AppCompatActivity {
                     .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            LocaisDAO locaisDAO = new LocaisDAO(getBaseContext());
-                            boolean excluiu = locaisDAO.excluir(locaisClicados);
+                            LocalDAO localDAO = new LocalDAO(getBaseContext());
+                            boolean excluiu = localDAO.excluir(localClicados);
                             if (excluiu) {
                                 onResume();
                             }
@@ -93,7 +93,7 @@ public class ListaLocaisActivity extends AppCompatActivity {
     }
 
     public void onClickNovoLocal(View v) {
-        Intent intent = new Intent(ListaLocaisActivity.this, CadastroLocaisActivity.class);
+        Intent intent = new Intent(ListaLocaisActivity.this, CadastroLocalActivity.class);
         startActivity(intent);
     }
 

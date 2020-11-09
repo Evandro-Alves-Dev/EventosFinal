@@ -14,14 +14,12 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import br.com.eventosflorianpolis2020.database.EventoDAO;
-import br.com.eventosflorianpolis2020.modelo.Eventos;
-
-import static br.com.eventosflorianpolis2020.R.id.ed_nomeEvento;
+import br.com.eventosflorianpolis2020.modelo.Evento;
 
 public class MainActivity extends AppCompatActivity {
 
     private ListView listViewEvento;
-    private ArrayAdapter<Eventos> adapterEvento;
+    private ArrayAdapter<Evento> adapterEvento;
 
     private int id = 0;
 
@@ -40,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         EventoDAO eventoDAO = new EventoDAO(getBaseContext());
-        adapterEvento = new ArrayAdapter<Eventos>(MainActivity.this,
+        adapterEvento = new ArrayAdapter<Evento>(MainActivity.this,
                 android.R.layout.simple_list_item_1,
                 eventoDAO.listar());
         listViewEvento.setAdapter(adapterEvento);
@@ -50,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         listViewEvento.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                final Eventos eventoClicado = adapterEvento.getItem(position);
+                final Evento eventoClicado = adapterEvento.getItem(position);
 
                 new AlertDialog.Builder(MainActivity.this)
                         .setIcon(android.R.drawable.ic_menu_edit)
@@ -73,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         listViewEvento.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                final Eventos eventoClicado = adapterEvento.getItem(position);
+                final Evento eventoClicado = adapterEvento.getItem(position);
 
                 new AlertDialog.Builder(MainActivity.this)
                     .setIcon(android.R.drawable.ic_menu_delete)

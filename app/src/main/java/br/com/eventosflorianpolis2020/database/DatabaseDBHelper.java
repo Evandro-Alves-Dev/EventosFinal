@@ -8,8 +8,6 @@ import androidx.annotation.Nullable;
 
 import br.com.eventosflorianpolis2020.database.contract.EventoContract;
 import br.com.eventosflorianpolis2020.database.contract.LocaisContract;
-import br.com.eventosflorianpolis2020.database.entity.LocaisEntity;
-import br.com.eventosflorianpolis2020.modelo.Locais;
 
 public class DatabaseDBHelper extends SQLiteOpenHelper {
 

@@ -2,17 +2,17 @@ package br.com.eventosflorianpolis2020.modelo;
 
 import java.io.Serializable;
 
-public class Locais implements Serializable {
+public class Local implements Serializable {
 
-    private int id;
-    private String descricao;
+    private int id = 0;
+    private String nomeLocal;
     private String bairro;
     private String cidade;
     private int capacidade;
 
-    public Locais(int id, String descricao, String bairro, String cidade, int capacidade) {
+    public Local(int id, String nome, String bairro, String cidade, int capacidade) {
         this.id = id;
-        this.descricao = descricao;
+        this.nomeLocal = nome;
         this.bairro = bairro;
         this.cidade = cidade;
         this.capacidade = capacidade;
@@ -26,12 +26,12 @@ public class Locais implements Serializable {
         this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getNome() {
+        return nomeLocal;
     }
 
-    public void setDescricaoe(String descricao) {
-        this.descricao = descricao;
+    public void setNome(String nomeLocal) {
+        this.nomeLocal = nomeLocal;
     }
 
     public String getBairro() {
@@ -60,9 +60,6 @@ public class Locais implements Serializable {
 
     @Override
     public String toString() {
-        return "Nome: " + descricao +
-                "\nBairro: " + bairro +
-                "\nCidade: " + cidade +
-                "\nCapacidade: " + capacidade;
+        return getNome();
     }
 }
