@@ -135,4 +135,32 @@ public class MainActivity extends AppCompatActivity {
                 eventoDAO.listarPesquisaCidade(opcao, letra, letraCidade));
         listViewEvento.setAdapter(adapterEvento);
     }
+
+    public void onClickCrescente(View v) {
+        EditText textoBuscaNome = findViewById(R.id.ed_pesquisaPorEvento);
+        String palavra = textoBuscaNome.getText().toString();
+        int opcao = 2;
+
+        EventoDAO eventoDAO = new EventoDAO(getBaseContext());
+
+        adapterEvento = new ArrayAdapter<>(MainActivity.this,
+                android.R.layout.simple_list_item_1,
+                eventoDAO.listarPesquisa(opcao, palavra));
+        listViewEvento.setAdapter(adapterEvento);
+
+    }
+
+    public void onClickDecrescente(View v) {
+        EditText textoBuscaNome = findViewById(R.id.ed_pesquisaPorEvento);
+        String palavra = textoBuscaNome.getText().toString();
+        int opcao = 1;
+
+        EventoDAO eventoDAO = new EventoDAO(getBaseContext());
+
+        adapterEvento = new ArrayAdapter<>(MainActivity.this,
+                android.R.layout.simple_list_item_1,
+                eventoDAO.listarPesquisa(opcao, palavra));
+        listViewEvento.setAdapter(adapterEvento);
+    }
+
 }
